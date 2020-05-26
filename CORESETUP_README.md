@@ -58,7 +58,9 @@
 * Changing email-id to client's email-id , /groots/monitoring/config_files/etc/objects/contacts.cfg
 * Replacing the client's Ip in Grafana config file and comment the section access url using hostname, /etc/httpd/conf.d/grafana.conf
 * Add default SSL entries in this file, /etc/httpd/conf.d/pnp4nagios.conf
+
   echo "SSLCertificateFile /etc/pki/tls/certs/localhost.crt" >> /etc/httpd/conf.d/pnp4nagios.conf
+  
   echo "SSLCertificateKeyFile /etc/pki/tls/private/localhost.key" >> /etc/httpd/conf.d/pnp4nagios.conf
 * For generating graphs for the remote hosts re-execute node grafana_dashboard_automatation.js by adding the remote host name and restart grafana service. 
 
