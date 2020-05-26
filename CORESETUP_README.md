@@ -1,5 +1,5 @@
 
-# Gmetrics monitor core installation
+# Gmetrics monitor core Setup Installation
 
 ## Purpose
 
@@ -45,9 +45,11 @@
 ## Scipt run 
 
 * execute gmetrics_checkenv script,
+
   sh /root/gmetrics-automation/gmetrics_checkenv.sh
 
-* execute gmetrics-core installation script. (to be run as root) 
+* execute gmetrics-core installation script,
+  
   sh /root/gmetrics-automation/gmetrics-core-setup.sh
 
 
