@@ -11,5 +11,6 @@ do
     i=$(($i+1))
 done
 
-echo $SCRIPTNAME
+echo "$SCRIPTNAME"
+echo "###############"
 
