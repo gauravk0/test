@@ -46,7 +46,7 @@ while read line; do echo "[`date +"%Y-%m-%dT%H:%M:%S,%N" | rev | cut -c 7- | rev
 # Usage details
 ######################################################
 
-if [ "${1}" = "--help" -o "${#}" != "2" ];
+if [ "${1}" = "--help" -o "${#}" != "6" ];
 then
 echo -e "
         Plugin list: sms, appsensors, aws, backup, dns, docker, elk, expiry, hardware, lamp, mithi, os, website, jvm, node, jenkins
@@ -65,10 +65,12 @@ fi
 # Get user-given variables
 #######################################################
 
-while getopts "p:" Input;
+while getopts "p:u:x:" Input;
 do
         case ${Input} in
         p) PLUGINNAME=$OPTARG;;
+        i) USERNAME=$OPTARG;;
+        x) PASSWD=$OPTARG;;
         *) echo "Usage: $SCRIPTNAME -p [plugin name]"
         exit 3;
         ;;
@@ -118,12 +120,12 @@ fi
 #######################################################
 
 echo "#######################################################" | log
-echo "Enter git username:" | log
-read USERNAME
+#echo "Enter git username:" | log
+#read USERNAME
 
 echo "#######################################################" | log
-echo "Enter git Password:" | log
-read -s PASSWORD
+#echo "Enter git Password:" | log
+#read -s PASSWORD
 
 # Destination path
 #######################################################
@@ -133,7 +135,7 @@ DEST="/groots/metrics/libexec/"
 # Svn command to Download plugin folder from git to /groots/metrics/libexec
 #######################################################
 
-SVNCMD="--non-interactive --no-auth-cache --username $USERNAME --password "$PASSWORD" $DEST"
+SVNCMD="--non-interactive --no-auth-cache --username grootsadmin --password "Grootsadmin#2019@" $DEST"
 GITPATH="svn checkout https://github.com/grootsadmin/gmetrics-plugins/trunk/os/linux"
 
 if [ "$PLUGINNAME" = "sms" ] || [ "$PLUGINNAME" = "Sms" ] || [ "$PLUGINNAME" = "SMS" ] ; then
