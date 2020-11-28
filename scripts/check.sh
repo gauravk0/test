@@ -86,6 +86,7 @@ echo "#################################################" | log
 echo "Removing logrotate file" | log
 
 if [ -f /etc/logrotate.d/gmetrics-agent ]; then
+echo "#################################################" | log
 sudo rm -rvf /etc/logrotate.d/gmetrics-agent | log
 echo "#################################################" | log
 echo "Removed "/etc/logrotate.d/gmetrics-agent" file" | log
@@ -119,9 +120,9 @@ echo "#################################################" | log
 echo "Emptying "/groots/tmp/" directory" | log
 rm -rvf /groots/tmp/* | log
 rm -rvf /groots/tmp/.svn/ | log
-echo "#################################################" | log
 
 if [ -d /groots/metrics  ]; then
+echo "#################################################" | log
 echo "Removing "/groots/metrics" directory" | log
 rm -rvf /groots/metrics | log
 echo "#################################################" | log
@@ -151,7 +152,7 @@ echo "Removed groots user and home directory" | log
 else
 echo "#################################################" | log
 echo "groots user not found..!!" | log
-exit 1
+exit 1;
 fi
 }
 
