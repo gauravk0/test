@@ -69,7 +69,7 @@ while getopts "p:u:x:" Input;
 do
         case ${Input} in
         p) PLUGINNAME=$OPTARG;;
-        i) USERNAME=$OPTARG;;
+        u) USERNAME=$OPTARG;;
         x) PASSWD=$OPTARG;;
         *) echo "Usage: $SCRIPTNAME -p [plugin name]"
         exit 3;
