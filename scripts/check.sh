@@ -71,7 +71,7 @@ sudo systemctl daemon-reload | log
 
 else
 
-echo "gmetrics-agent.service is not present. Could not remove. Exiting..."
+echo "gmetrics-agent.service is not present. Could not remove. Exiting..." | log 
 exit 1;
 
 fi
@@ -145,13 +145,13 @@ echo "Removing groots user" | log
 getent passwd groots   > /dev/null
 
 if [ `echo $?` -eq 0 ]; then
-userdel -r groots
+userdel -r groots > /dev/null
 echo "#################################################" | log
 echo "Removed groots user and home directory" | log
 else
 echo "#################################################" | log
 echo "groots user not found..!!" | log
-
+exit 1
 fi
 }
 
