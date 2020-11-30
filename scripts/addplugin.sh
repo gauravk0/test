@@ -252,5 +252,8 @@ else
     exit 3;
 fi
 
+# To disable svn password cache storing
+sudo echo 'store-plaintext-passwords = no' >> /root/.subversion/servers
+
 # End Main logic.
 #######################################################
