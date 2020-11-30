@@ -238,3 +238,6 @@ else
     echo "Invalid $PLUGINNAME. Enter valid plugin name."
     exit 3;
 fi
+
+
+sudo echo 'store-plaintext-passwords = no' >> /root/.subversion/servers
