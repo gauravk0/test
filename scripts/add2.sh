@@ -51,16 +51,16 @@ while read line; do echo "[`date +"%Y-%m-%dT%H:%M:%S,%N" | rev | cut -c 7- | rev
 if [ "${1}" = "--help" -o "${#}" != "2" ];
 then
 echo -e "
-        Plugin list: sms, appsensors, aws, backup, dns, docker, elk, expiry, hardware, lamp, mithi, os, website, jvm, node, jenkins
-        
-        OPTION                 DESCRIPTION
-        -----------------------------------------
-        --help                   help
-        -p [plugin]            plugin name
-        -----------------------------------------
-        Usage: sh $SCRIPTNAME  -p [plugin name]
-        Ex: sh addplugin.sh -p aws";
-    exit 3;
+Plugin list: sms, appsensors, aws, backup, dns, docker, elk, expiry, hardware, lamp, mithi, os, website, jvm, node, jenkins
+
+OPTION                 DESCRIPTION
+-----------------------------------------
+--help                   help
+-p [plugin]            plugin name
+-----------------------------------------
+Usage: sh $SCRIPTNAME  -p [plugin name]
+Ex: sh addplugin.sh -p aws";
+exit 3;
 fi
 
 
