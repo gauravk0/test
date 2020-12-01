@@ -17,7 +17,9 @@
 
 #Set script name
 #######################################################
-SCRIPTNAME=$(basename $0)
+#SCRIPTNAME=$(basename $0)
+
+SCRIPTNAME="addplugin.sh"
 
 # Import Hostname
 #######################################################
@@ -50,6 +52,7 @@ if [ "${1}" = "--help" -o "${#}" != "2" ];
 then
 echo -e "
         Plugin list: sms, appsensors, aws, backup, dns, docker, elk, expiry, hardware, lamp, mithi, os, website, jvm, node, jenkins
+        
         OPTION                 DESCRIPTION
         -----------------------------------------
         --help                   help
@@ -82,6 +85,10 @@ OSNAME=$(cat /etc/*release | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 
 echo "#######################################################" | log
 echo "Verifying if Subversion is present or not.." | log
 
+# Verify svn package
+#######################################################
+verify_package () {
+
 if [ $OSNAME = "CentOS" ]; then
 
     svn --version > /dev/null 2>&1
@@ -113,9 +120,12 @@ if [ $OSNAME = "Ubuntu" ]; then
     fi
 fi
 
+}
 
 # collecting git Username and Password
 #######################################################
+
+user_input () {
 
 echo "#######################################################" | log
 echo "Enter git username:" | log
@@ -125,13 +135,16 @@ echo "#######################################################" | log
 echo "Enter git Password:" | log
 read -s PASSWORD
 
+}
+
 # Destination path
 #######################################################
-
 DEST="/groots/metrics/libexec/"
 
 # Svn command to Download plugin folder from git to /groots/metrics/libexec
 #######################################################
+
+copy_plugin () {
 
 SVNCMD="--non-interactive --no-auth-cache --username $USERNAME --password "$PASSWORD" $DEST"
 GITPATH="svn checkout https://github.com/grootsadmin/gmetrics-plugins/trunk/os/linux"
@@ -246,12 +259,36 @@ elif [ "$PLUGINNAME" = "ELK" ] || [ "$PLUGINNAME" = "Elk" ] || [ "$PLUGINNAME" =
 
 else
     echo "#######################################################"
-    echo "Invalid $PLUGINNAME. Enter valid plugin name."
+    echo "Invalid $PLUGINNAME. Enter valid plugin name. Exiting now..!"
     exit 3;
 fi
 
+}
+
 # To disable svn password cache storing
+#######################################################
+
+disable_svn_password () {
+
+echo "#######################################################" | log 
+echo "Disabling svn password store" | log 
 sudo echo 'store-plaintext-passwords = no' >> /root/.subversion/servers
+}
+
+
+# Function calling
+#######################################################
+
+while true
+do 
+
+        verify_package
+        user_input
+        copy_plugin
+        disable_svn_password
+
+break 
+done 
 
 # End Main logic.
 #######################################################
