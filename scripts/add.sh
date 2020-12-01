@@ -103,7 +103,7 @@ fi
 #######################################################
 
 echo "########################################################" | log
-echo "PLugin List : sms, appsensors, aws, backup, dns, docker, elk, expiry, hardware, lamp, mithi, os, website, jvm, node, jenkins"
+echo "PLugin List : sms, appsensors, aws, backup, dns, docker, elk, expiry, hardware, lamp, mithi, os, website, jvm, node, jenkins" | log 
 echo "########################################################" | log
 echo "Enter plugin name.." | log
 read PLUGINNAME
