@@ -102,14 +102,14 @@ fi
 # collecting git Username and Password
 #######################################################
 
-
+echo "########################################################" | log
+echo "PLugin List : sms, appsensors, aws, backup, dns, docker, elk, expiry, hardware, lamp, mithi, os, website, jvm, node, jenkins"
+echo "########################################################" | log
 echo "Enter plugin name.." | log
 read PLUGINNAME
-
 echo "#######################################################" | log
 echo "Enter git username:" | log
 read USERNAME
-
 echo "#######################################################" | log
 echo "Enter git Password:" | log
 read -s PASSWORD
