@@ -69,8 +69,6 @@ while getopts "p:" Input;
 do
         case ${Input} in
         p) PLUGINNAME=$OPTARG;;
-#        u) USERNAME=$OPTARG;;
-#        x) PASSWD=$OPTARG;;
         *) echo "Usage: $SCRIPTNAME -p [plugin name]"
         exit 3;
         ;;
@@ -137,8 +135,6 @@ DEST="/groots/metrics/libexec/"
 
 SVNCMD="--non-interactive --no-auth-cache --username $USERNAME --password "$PASSWORD" $DEST"
 GITPATH="svn checkout https://github.com/grootsadmin/gmetrics-plugins/trunk/os/linux"
-
-echo $SVNCMD  | log 
  
 if [ "$PLUGINNAME" = "sms" ] || [ "$PLUGINNAME" = "Sms" ] || [ "$PLUGINNAME" = "SMS" ] ; then
     echo "Plugin "sms" selected to add in "$DEST" " | log
