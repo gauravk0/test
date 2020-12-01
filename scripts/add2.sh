@@ -135,7 +135,7 @@ DEST="/groots/metrics/libexec/"
 # Svn command to Download plugin folder from git to /groots/metrics/libexec
 #######################################################
 
-SVNCMD="--non-interactive --no-auth-cache --username $USERNAME --password "$PASSWD" $DEST"
+SVNCMD="--non-interactive --no-auth-cache --username $USERNAME --password "$PASSWORD" $DEST"
 GITPATH="svn checkout https://github.com/grootsadmin/gmetrics-plugins/trunk/os/linux"
 
 if [ "$PLUGINNAME" = "sms" ] || [ "$PLUGINNAME" = "Sms" ] || [ "$PLUGINNAME" = "SMS" ] ; then
