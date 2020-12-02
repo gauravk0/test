@@ -171,8 +171,12 @@ echo "Downloading Agent builds under $PLUGINSDIR directory" | log
 
 if [ "$BRANCH" == "master" ]; then
 URL="https://github.com/grootsadmin/gmetrics-agent-setup/trunk/v5/builds"
+echo $URL 
+exit 1
 else
 URL="https://github.com/grootsadmin/gmetrics-agent-setup/branches/$BRANCH/v5/builds"
+echo $URL 
+exit 1
 fi
 
 svn checkout $URL $PLUGINSDIR | log
@@ -612,7 +616,7 @@ elif [ "$OSNAME" = "Ubuntu" ]; then
 #        gmetrics_agent_user_addition
 
         # Gmetrics agent plugin directory creation.
- #       gmetrics_agent_plugin_directory_addition
+        gmetrics_agent_plugin_directory_addition
 
         # Verify permission for /groots directory
  #       verify_groots_dir_permission
