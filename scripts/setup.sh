@@ -154,7 +154,7 @@ echo "Gmetrics plugin \"$PLUGINSDIR\" directory successfully created" | log
 echo "#######################################################" | log
 echo "Downloading Agent builds under $PLUGINSDIR directory" | log
 
-if [ "$BRANCH" == "master" ];
+if [ "$BRANCH" == "master" ]; then
 URL="https://github.com/grootsadmin/gmetrics-agent-setup/trunk/v5/builds"
 else
 URL="https://github.com/grootsadmin/gmetrics-agent-setup/branches/$BRANCH/v5/builds"
