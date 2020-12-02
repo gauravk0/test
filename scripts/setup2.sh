@@ -135,9 +135,9 @@ read BRANCH
 echo "#######################################################" | log
 echo "Downloading Agent builds under $PLUGINSDIR directory" | log
 
-URL="https://github.com/grootsadmin/gmetrics-agent-setup/branches/$BRANCH/v5/builds"
-echo $URL 
-exit 0;
+#URL="https://github.com/grootsadmin/gmetrics-agent-setup/branches/alpha/v5/builds"
+URL="https://github.com/grootsadmin/gmetrics-agent-setup/$BRANCH/v5/builds"
+
 svn checkout $URL $PLUGINSDIR | log
 echo "#######################################################" | log
 echo "Downloading builds under $PLUGINSDIR directory completed!!!" | log
@@ -572,43 +572,43 @@ elif [ "$OSNAME" = "Ubuntu" ]; then
         echo "You need to install these os libraries packages on the server : telnet libgd-dev libmcrypt-dev libssl-dev dc snmp libnet-snmp-perl sysstat openssl vim dos2unix git" | log
 
         # Gmetrics agent user addition.
-#        gmetrics_agent_user_addition
+        gmetrics_agent_user_addition
 
         # Gmetrics agent plugin directory creation.
         gmetrics_agent_plugin_directory_addition
 
         # Verify permission for /groots directory
- #       verify_groots_dir_permission
+        verify_groots_dir_permission
 
         # Get ip address from system.
- #       gmetrics_agent_getipaddress
+        gmetrics_agent_getipaddress
 
 	# Verify agent service log path 
-	#verify_log_path_permission
+	verify_log_path_permission
 
         # Changing permissions of file /bin/ping and /bin/ping6
-  #      gmetrics_agent_change_ping_permission
+        gmetrics_agent_change_ping_permission
 
         # Extracting gmetrics-agent tar file.
-   #     gmetrics_agent_ubuntu_untarzipfile
+        gmetrics_agent_ubuntu_untarzipfile
 
         # Gmetrics agent port entry add in /etc/services file.
-    #    gmetrics_agent_service_port_entry
+        gmetrics_agent_service_port_entry
 
         # Gmetrics agent user entry add in Sudoers File.
-    #    gmetrics_agent_sudoers_entry
+        gmetrics_agent_sudoers_entry
 
         # Adding agent server LAN IP in gmetrics-agent config file.
-    #    gmetrics_agent_assign_ipaddress
+        gmetrics_agent_assign_ipaddress
 
         # Adding gmetrics-agent port in firewall.
-    #    gmetrics_agent_firewall
+        gmetrics_agent_firewall
 
         # Start gmetrics-agent services.
- #       gmetrics_agent_service_start
+        gmetrics_agent_service_start
 
         # Verify gmetrics-agent service status.
- #       gmetrics_agent_connectivity_test
+        gmetrics_agent_connectivity_test
 
         echo "#######################################################" | log
 fi
