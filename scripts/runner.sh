@@ -30,7 +30,7 @@ while (( $# )); do
         BRANCH=$2
         ;;
         -h|--help)
-        USAGE: ./$SCRIPTNAME --branch <master/alpha/beta>
+        echo "USAGE: ./setup.sh --branch <branchname>"
         exit 3
         ;;
         esac
