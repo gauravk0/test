@@ -31,8 +31,6 @@ type sar >/dev/null 2>&1 || { echo >&2 "This plugin require "sysstat" package, b
 #######################################################
 HOSTNAME=$(hostname)
 
-read BRANCH
-
 # Logfile
 #######################################################
 LOGDIR=/var/log/groots/metrics/
@@ -133,7 +131,7 @@ echo "Gmetrics plugin directory creating." | log
 PLUGINSDIR="/groots/tmp/"
 mkdir -p $PLUGINSDIR
 echo "Gmetrics plugin \"$PLUGINSDIR\" directory successfully created" | log
-
+read BRANCH
 echo "#######################################################" | log
 echo "Downloading Agent builds under $PLUGINSDIR directory" | log
 
