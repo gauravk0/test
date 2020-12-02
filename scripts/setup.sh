@@ -27,6 +27,25 @@ SCRIPTNAME="gmetrics_agent_setup.sh"
 type svn >/dev/null 2>&1 || { echo >&2 "This plugin require "subversion" package, but it's not installed. Aborting."; exit 1; }
 type sar >/dev/null 2>&1 || { echo >&2 "This plugin require "sysstat" package, but it's not installed. Aborting."; exit 1; }
 
+
+#########################################################
+# Get user-given variables
+#########################################################
+
+while (( $# )); do
+
+        case "$1" in
+        -b|--branch)
+        BRANCH=$2
+        ;;
+        -h|--help)
+        echo "USAGE: ./"$SCRIPTNAME" --branch <branchname>"
+        exit 3
+        ;;
+        esac
+        shift
+done
+
 # Import Hostname
 #######################################################
 HOSTNAME=$(hostname)
@@ -135,7 +154,12 @@ echo "Gmetrics plugin \"$PLUGINSDIR\" directory successfully created" | log
 echo "#######################################################" | log
 echo "Downloading Agent builds under $PLUGINSDIR directory" | log
 
-URL="https://github.com/grootsadmin/gmetrics-agent-setup/branches/alpha/v5/builds"
+if [ "$BRANCH" == "master" ];
+URL="https://github.com/grootsadmin/gmetrics-agent-setup/trunk/v5/builds"
+else
+URL="https://github.com/grootsadmin/gmetrics-agent-setup/branches/$BRANCH/v5/builds"
+fi
+
 svn checkout $URL $PLUGINSDIR | log
 echo "#######################################################" | log
 echo "Downloading builds under $PLUGINSDIR directory completed!!!" | log
@@ -570,43 +594,43 @@ elif [ "$OSNAME" = "Ubuntu" ]; then
         echo "You need to install these os libraries packages on the server : telnet libgd-dev libmcrypt-dev libssl-dev dc snmp libnet-snmp-perl sysstat openssl vim dos2unix git" | log
 
         # Gmetrics agent user addition.
-        gmetrics_agent_user_addition
+#        gmetrics_agent_user_addition
 
         # Gmetrics agent plugin directory creation.
-        gmetrics_agent_plugin_directory_addition
+ #       gmetrics_agent_plugin_directory_addition
 
         # Verify permission for /groots directory
-        verify_groots_dir_permission
+ #       verify_groots_dir_permission
 
         # Get ip address from system.
-        gmetrics_agent_getipaddress
+ #       gmetrics_agent_getipaddress
 
 	# Verify agent service log path 
-	verify_log_path_permission
+#	verify_log_path_permission
 
         # Changing permissions of file /bin/ping and /bin/ping6
-        gmetrics_agent_change_ping_permission
+ #       gmetrics_agent_change_ping_permission
 
         # Extracting gmetrics-agent tar file.
         gmetrics_agent_ubuntu_untarzipfile
 
         # Gmetrics agent port entry add in /etc/services file.
-        gmetrics_agent_service_port_entry
+  #      gmetrics_agent_service_port_entry
 
         # Gmetrics agent user entry add in Sudoers File.
-        gmetrics_agent_sudoers_entry
+  #      gmetrics_agent_sudoers_entry
 
         # Adding agent server LAN IP in gmetrics-agent config file.
-        gmetrics_agent_assign_ipaddress
+   #     gmetrics_agent_assign_ipaddress
 
         # Adding gmetrics-agent port in firewall.
-        gmetrics_agent_firewall
+    #    gmetrics_agent_firewall
 
         # Start gmetrics-agent services.
-        gmetrics_agent_service_start
+     #   gmetrics_agent_service_start
 
         # Verify gmetrics-agent service status.
-        gmetrics_agent_connectivity_test
+      #  gmetrics_agent_connectivity_test
 
         echo "#######################################################" | log
 fi
@@ -614,7 +638,7 @@ fi
 echo "Gmetrics Agent plugin executor is successfully installed." | log
 echo "Gmetrics Agent Installation is completed at [`date`]." | log
 echo "Remove tmp files from /groots/tmp/" | log
-rm -rf /groots/tmp/* > /dev/null
+#rm -rf /groots/tmp/* > /dev/null
 
 echo "
 NOTE : If gmetrics-agent installation does not started then check installation log file [$LOGFILE]
