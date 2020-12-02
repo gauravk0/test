@@ -27,6 +27,21 @@ SCRIPTNAME="gmetrics_agent_setup.sh"
 type svn >/dev/null 2>&1 || { echo >&2 "This plugin require "subversion" package, but it's not installed. Aborting."; exit 1; }
 type sar >/dev/null 2>&1 || { echo >&2 "This plugin require "sysstat" package, but it's not installed. Aborting."; exit 1; }
 
+# Usage details
+######################################################
+
+if [ "${1}" = "--help" -o "${#}" != "2" ];
+then
+echo -e "
+OPTION                 DESCRIPTION
+-----------------------------------------
+--help                   help
+-b| --branch            branch name
+-----------------------------------------
+Usage: sh $SCRIPTNAME  -b <branch name>
+Ex: sh addplugin.sh -b alpha";
+exit 3;
+fi
 
 #########################################################
 # Get user-given variables
