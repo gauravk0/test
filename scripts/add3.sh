@@ -68,7 +68,7 @@ fi
 while getopts "p:" Input;
 do
         case ${Input} in
-        p) PLUGINNAME=$OPTARG;;
+        p) PLUGINNAME=$OPTARG;; 
         *) echo "Usage: $SCRIPTNAME -p [plugin name]"
         exit 3;
         ;;
@@ -99,6 +99,7 @@ copy_plugin () {
 #######################################################
 
 list=("sms" "appsensors" "aws" "backup" "dns" "docker" "elk" "expiry" "hardware" "lamp" "mithi" "os" "website" "jvm" "node" "jenkins")
+PLUGINNAME=`echo "$PLUGINNAME" | sed -e 's/\(.*\)/\L\1/'`
 
 # Verify if plugin present or not
 #######################################################
