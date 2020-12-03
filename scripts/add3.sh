@@ -80,21 +80,6 @@ done
 
 type svn >/dev/null 2>&1 || { echo >&2 "This plugin require "subversion" package, but it's not installed. Aborting."; exit 1; }
 
-# Collecting git Username and Password
-#######################################################
-
-user_input () {
-
-echo "#######################################################" | log
-echo "Enter git username:" | log
-read USERNAME
-
-echo "#######################################################" | log
-echo "Enter git Password:" | log
-read -s PASSWORD
-
-}
-
 # To disable svn password cache storing
 #######################################################
 
@@ -126,6 +111,17 @@ else
 	echo "Plugin is not present. Enter a valid plugin name.." | log
 	exit 1;
 fi
+
+# Collecting git username & password
+######################################################
+
+echo "#######################################################" | log
+echo "Enter git username:" | log
+read USERNAME
+
+echo "#######################################################" | log
+echo "Enter git Password:" | log
+read -s PASSWORD
 
 for item in ${list[@]}; 
 do
@@ -160,8 +156,7 @@ done
 while true
 do
 	disable_svn_password
-	copy_plugin
-	user_input	        
+	copy_plugin      
 break
 done
 
