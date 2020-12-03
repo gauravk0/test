@@ -138,8 +138,9 @@ echo "Downloading Agent builds under $PLUGINSDIR directory" | log
 #URL="https://github.com/grootsadmin/gmetrics-agent-setup/branches/alpha/v5/builds"
 URL="https://github.com/grootsadmin/gmetrics-agent-setup/$BRANCH/v5/builds"
 
-svn checkout $URL $PLUGINSDIR | log
+#svn checkout $URL $PLUGINSDIR | log
 echo "#######################################################" | log
+ls $PLUGINSDIR*.gz  > /dev/null 2>&1  || { echo "Builds have been not downlaoded under $PLUGINSDIR. Exiting.." ; exit 1 }
 echo "Downloading builds under $PLUGINSDIR directory completed!!!" | log
 echo "#######################################################" | log
 echo "Disabling password store for subversion" | log 
