@@ -139,7 +139,7 @@ do
 	echo "#######################################################" | log
 	echo "Plugin "$PLUGINNAME" selected to add in "$DEST" " | log
 
-	$GITPATH/$PLUGINNAME $SVNCMD  2>/dev/null || { echo "Incorrect git credentials, Exiting now..." | log ; exit 1; }
+	$GITPATH/$PLUGINNAME $SVNCMD 2>/dev/null | log || { echo "Incorrect git credentials, Exiting now..." | log ; exit 1; }
 	rm -rf $DEST/.svn
 
 	echo "#######################################################" | log
