@@ -160,8 +160,8 @@ done
 while true
 do
 	disable_svn_password
-	user_input
-	copy_plugin        
+	copy_plugin
+	user_input	        
 break
 done
 
