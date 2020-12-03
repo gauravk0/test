@@ -115,25 +115,24 @@ copy_plugin () {
 
 list=("sms" "appsensors" "aws" "backup" "dns" "docker" "elk" "expiry" "hardware" "lamp" "mithi" "os" "website" "jvm" "node" "jenkins")
 
+# Verify if plugin present or not
+#######################################################
+
+if [[ " ${list[*]} " == *" $PLUGINNAME "* ]]; then
+	echo "#######################################################" | log
+	echo "List contains plugin - $PLUGINNAME" | log
+else
+	echo "#######################################################" | log
+	echo "Plugin is not present. Enter a valid plugin name.." | log
+	exit 1;
+fi
+
 for item in ${list[@]}; 
 do
 
 	# Destination path
 	#######################################################
-	DEST="/groots/metrics/libexec/"
-
-		# Verify if plugin present
-		#######################################################
-
-		if [[ " ${list[*]} " == *" $PLUGINNAME "* ]]; then
-
-			echo "#######################################################" | log
-			echo "List contains plugin - $PLUGINNAME" | log
-		else
-			echo "#######################################################" | log
-			echo "Plugin is not present. Enter a valid plugin name.." | log
-			exit 1;
-		fi
+	DEST="/groots/metrics/libexec/"	
 
 	# Command for svn & git master repo path
 	#######################################################
