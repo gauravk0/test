@@ -129,7 +129,7 @@ do
 
 			echo "#######################################################" | log
 			echo "List contains plugin - $PLUGINNAME" | log
-    else
+		else
 			echo "#######################################################" | log
 			echo "Plugin is not present. Enter a valid plugin name.." | log
 			exit 1;
