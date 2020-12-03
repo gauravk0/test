@@ -109,7 +109,7 @@ if [[ " ${list[*]} " == *" $PLUGINNAME "* ]]; then
 	echo "List contains plugin - $PLUGINNAME" | log
 else
 	echo "#######################################################" | log
-	echo "Plugin is not present. Enter a valid plugin name.." | log
+	echo "Plugin $PLUGINNAME is not present. Enter a valid plugin name.." | log
 	exit 1;
 fi
 
