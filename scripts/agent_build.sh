@@ -323,12 +323,12 @@ WantedBy=multi-user.target
 [Service]
 Type=simple
 Restart=on-abort
-PIDFile=/groots/metrics/var/nrpe.pid
+PIDFile=/groots/metrics/var/gmetrics-agent.pid
 RuntimeDirectory=groots
 RuntimeDirectoryMode=0755
 ExecStart=/groots/metrics/bin/gmetrics-agent -c /groots/metrics/etc/gmetrics-config.cfg -f
 ExecReload=/bin/kill -HUP $MAINPID
-ExecStopPost=/bin/rm -f /groots/metrics/var/nrpe.pid
+ExecStopPost=/bin/rm -f /groots/metrics/gmetrics-agent.pid
 TimeoutStopSec=60
 User=groots
 Group=groots
