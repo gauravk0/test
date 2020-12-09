@@ -83,9 +83,9 @@ package_install () {
 
 	echo "#######################################################" | log
 	echo "Installing pre-prerequisites pacakges.." | log
-	sudo apt install autoconf gcc make unzip libgd-dev libmcrypt-dev libssl-dev dc snmp libnet-snmp-perl gettext sysstat openssl perl vim dos2unix mlocate rpm git apt-file -y >/dev/null
-	sudo apt update > /dev/null
-	sudo apt-file update > /dev/null
+	#sudo apt install autoconf gcc make unzip libgd-dev libmcrypt-dev libssl-dev dc snmp libnet-snmp-perl gettext sysstat openssl perl vim dos2unix mlocate rpm git apt-file -y >/dev/null
+	#sudo apt update > /dev/null
+	#sudo apt-file update > /dev/null
 }
 
 download_nrpe_source () {
