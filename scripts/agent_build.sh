@@ -531,4 +531,4 @@ if [  $OSNAME == "ubuntu" ]; then
 fi 
 
 echo "#######################################################" | log
-echo "Gmetrics Agent build creation starting at [`date`]." | log
+echo "Gmetrics Agent build creation completed at [`date`]." | log
