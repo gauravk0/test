@@ -374,6 +374,8 @@ append_gmetrics_agent_config () {
 	echo "#######################################################" | log
 	echo "Appending gmetrics-agent plugins configuration commands from template.cfg.." | log
 #	cat /root/agent/template.cfg >> /groots/metrics/config/gmetrics-agent.cfg
+	curl -L -s https://raw.githubusercontent.com/gauravk0/test/master/scripts/template.cfg > /root/gmetricsdata/template.cfg
+	cat /root/gmetricsdata/template.cfg >> /groots/metrics/config/gmetrics-agent.cfg
 	echo "Successfully updated "/groots/metrics/config/gmetrics-agent.cfg"" | log
 
 }
