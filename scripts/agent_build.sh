@@ -493,7 +493,7 @@ create_build () {
 	Y=`date +'%Y'`
 	D=`date +'%d'`
 	M=`date +'%m'`
-	tar -pczvf /root/gmetrics-agent-deb-V6.$D.$M.$Y.gz /groots/metrics/ /lib/systemd/system/gmetrics-agent.service /etc/logrotate.d/gmetrics-agent /etc/sudoers.d/gmetrics-agent /var/log/groots/metrics/
+	tar -pczvf /root/gmetrics-agent-deb-V6.$D.$M.$Y.tar.gz /groots/metrics/ /lib/systemd/system/gmetrics-agent.service /etc/logrotate.d/gmetrics-agent /etc/sudoers.d/gmetrics-agent /var/log/groots/metrics/
 	echo "Verifying the contents of gmetrics-agent build " | log
 	tar -tvf /root/gmetrics-agent-deb-V6.$D.$M.$Y.tar.gz | log
 	echo "#######################################################" | log
