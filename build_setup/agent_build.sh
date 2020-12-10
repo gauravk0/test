@@ -498,7 +498,7 @@ create_build () {
 	tar -tvf /root/gmetrics-agent-deb-V6.$D.$M.$Y.tar.gz | log
 	echo "#######################################################" | log
 	echo "Generating mdsum for gmetrics build validation.." | log 
-	md5sum root/gmetrics-agent-deb-V6.$D.$M.$Y.tar.gz | log 
+	md5sum /root/gmetrics-agent-deb-V6.$D.$M.$Y.tar.gz | log 
 	echo "#######################################################" | log
 	echo "Gmetrics build is successfully created.." | log
 }
