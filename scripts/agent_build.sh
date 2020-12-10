@@ -453,16 +453,17 @@ add_logrotation () {
 
 	echo "#######################################################" | log
 	echo "Add gmetrics agent logrotate script." | log
-	echo "/var/log/groots/metrics/gmetrics-agent.log {
-	rotate 30
-	daily
-	missingok
-	notifempty
-	compress
-	dateext
-	dateformat -%Y-%m-%d
-	create
-	dateyesterday
+	echo "
+/var/log/groots/metrics/gmetrics-agent.log {
+rotate 30
+daily
+missingok
+notifempty
+compress
+dateext
+dateformat -%Y-%m-%d
+create
+dateyesterday
 }" > /etc/logrotate.d/gmetrics-agent
 	echo "#######################################################" | log
 	echo "Verifying logrotate entry" | log
