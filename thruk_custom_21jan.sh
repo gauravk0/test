@@ -48,7 +48,7 @@ download_thruk_package () {
         wget $URLPATH/libthruk-"$VERSION"-0.rhel7.x86_64.rpm -P $DOWNLOADPATH | log
         wget $URLPATH/thruk-plugin-reporting-"$VERSION"-1.rhel7.x86_64.rpm -P $DOWNLOADPATH | log
         wget $URLPATH/thruk-base-"$VERSION"-1.rhel7.x86_64.rpm -P $DOWNLOADPATH | log
-        wget $URLPATH/thruk-"$VERSION"-1.rhel7.x86_64.rpm  -P $DOWNLOADPATH | log
+        #wget $URLPATH/thruk-"$VERSION"-1.rhel7.x86_64.rpm  -P $DOWNLOADPATH | log
         ls -ltrh "$DOWNLOADPATH"*.rpm || { echo "Thruk packages are not downloaded under $DOWNLOADPATH" | log ; exit 1 ;}
         echo "########################################################"
         echo "Installating Thruk packages on server" | log
@@ -69,13 +69,13 @@ file_etc_thruk_cgi_cfg () {
         fi
 
         echo "########################################################" | log 
-        echo "Changes in $THRUKCGIFILE file" | log
+        echo "Changes in $THRUKCGIFILE file. Appending changes difference in log file. " | log
         echo "########################################################" | log 
         sed -i 's/default_user_name/#default_user_name/g' $THRUKCGIFILE
         sed -i 's/authorized_for_admin=thrukadmin/authorized_for_admin=manager,graph,gmetricsadmin@localhost,harish@groots.in,root@localhost,grootsadmin/g' $THRUKCGIFILE
         sed -i 's/refresh_rate=90/refresh_rate=30/g' $THRUKCGIFILE
 
-        diff -u $THRUKCGIFILE $THRUKCGIFILE_original | log 
+        diff -i $THRUKCGIFILE "$THRUKCGIFILE"_original | log 
 }
 
 
@@ -93,7 +93,7 @@ file_etc_thruk_thruk_conf () {
 
 
         echo "########################################################" | log
-        echo "Changes in $THRUKCONFFILE file" | log
+        echo "Changes in $THRUKCONFFILE file. Appending changes difference in log file." | log
         echo "########################################################" | log
         sed -i '/^[[:blank:]]*use_strict_host_authorization/ {s/0/1/g;}'  $THRUKCONFFILE
         sed -i '/^[[:blank:]]*navframesize/ {s/172/195/g;}'  $THRUKCONFFILE
@@ -124,7 +124,7 @@ file_etc_thruk_thruk_conf () {
         sed -i '/^[[:blank:]]*report_subject_prepend/ {s/URGENT REPORT:/[Gmetrics]/g;}' $THRUKCONFFILE
 
 
-        diff -u $THRUKCONFFILE $THRUKCONFFILE_original | log 
+        diff -i  "$THRUKCONFFILE"_original $THRUKCONFFILE  | log 
 }
 
 
@@ -157,7 +157,7 @@ append_thruk_menu_conf () {
         fi
 
         echo "########################################################" | log
-        echo "Appending "/usr/share/thruk/menu.conf" " | log
+        echo "Appending "/usr/share/thruk/menu.conf". Appending changes difference in log file. " | log
         cat /root/gmetrics-build/gmetrics-dash/templates/menu.conf > $THRUKMENUFILE
 }
 
@@ -176,12 +176,12 @@ update_thruk_cookie_auth () {
         fi
 
         echo "########################################################" | log
-        echo "Changes in $THRUKCOOKIEAUTHFILE file" | log
+        echo "Changes in $THRUKCOOKIEAUTHFILE file. Appending changes difference in log file." | log
         echo "########################################################" | log
         sed -i '5{s/^/#/}'  $THRUKCOOKIEAUTHFILE
         sed -i "6 i RewriteRule ^/$              /thruk/ [R=302,L]" $THRUKCOOKIEAUTHFILE
         
-        diff -u $THRUKCOOKIEAUTHFILE $THRUKCOOKIEAUTHFILE_original | log 
+        diff -i "$THRUKCOOKIEAUTHFILE"_original $THRUKCOOKIEAUTHFILE  | log 
 }
 
 update_thruk_lib_thruk () {
@@ -199,7 +199,7 @@ update_thruk_lib_thruk () {
         fi
         
         echo "########################################################" | log 
-        echo "Changes in $THRUKLIBFILE file " | log 
+        echo "Changes in $THRUKLIBFILE file. Appending changes difference in log file. " | log 
         echo "########################################################" | log
         sed -i "s/Thruk - Monitoring Web Interface/Groots - Monitoring Web Interface/g" $THRUKLIBFILE
         sed -i "s/Monitoring web interface for Naemon, Nagios, Icinga and Shinken/Monitoring web interface for Groots/g"  $THRUKLIBFILE
@@ -207,7 +207,7 @@ update_thruk_lib_thruk () {
         sed -i -e '/This is free software; you can redistribute it/,+3d' $THRUKLIBFILE
         sed -i "s/Thruk is Copyright (c) 2009-2019 by Sven Nierlein and others/Groots Software Technologies, <support@groots.in>/g" $THRUKLIBFILE
 
-        diff -u $THRUKLIBFILE $THRUKLIBFILE_original | log 
+        diff -i  "$THRUKLIBFILE"_original $THRUKLIBFILE  | log 
 }
 
 file_thruk_lib_controller_root () {
@@ -225,12 +225,12 @@ file_thruk_lib_controller_root () {
         fi
 
         echo "########################################################" | log 
-        echo "Changes in $THRUKLIBCONTROLLER file " | log 
+        echo "Changes in $THRUKLIBCONTROLLER file. Appending changes difference in log file. " | log 
         echo "########################################################" | log
         sed -i "s/Thruk Monitoring Webinterface/Groots Monitoring Webinterface/g"  $THRUKLIBCONTROLLER
         sed -i "s/Thruk::Controller::Root - Root Controller for Thruk/Thruk::Controller::Root - Root Controller for Groots/g"   $THRUKLIBCONTROLLER
         
-        diff -u $THRUKLIBCONTROLLER $THRUKLIBCONTROLLER_original | log 
+        diff -i "$THRUKLIBCONTROLLER"_original $THRUKLIBCONTROLLER  | log 
 
 }
 
@@ -250,7 +250,7 @@ file_thruk_lib_controller_error () {
         fi
         
         echo "########################################################" | log 
-        echo "Changes in $THRUKLIBCONTROLLERERROR file " | log
+        echo "Changes in $THRUKLIBCONTROLLERERROR file. Appending changes difference in log file. " | log
         echo "########################################################" | log
         sed -i "s/Thruk::Controller::error - Thruk Controller/Thruk::Controller::error - Groots Controller/g" $THRUKLIBCONTROLLERERROR
         sed -i "s/Thruk Controller/Groots Controller/g" $THRUKLIBCONTROLLERERROR
@@ -258,7 +258,7 @@ file_thruk_lib_controller_error () {
         sed -i '/please specify at least one backend in your.*/ {s/thruk_local.conf/groots_local.conf/g;}' $THRUKLIBCONTROLLERERROR
         sed -i '/please specify at least one backend in your.*/ {s|www.thruk.org/documentation/install.html|www.groots.in|g;}' $THRUKLIBCONTROLLERERROR
         
-        diff -u $THRUKLIBCONTROLLERERROR $THRUKLIBCONTROLLERERROR_original | log 
+        diff -i "$THRUKLIBCONTROLLERERROR"_original $THRUKLIBCONTROLLERERROR  | log 
 
 }
 
