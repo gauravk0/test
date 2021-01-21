@@ -254,14 +254,13 @@ file_thruk_lib_controller_error () {
         echo "########################################################" | log
         sed -i "s/Thruk::Controller::error - Thruk Controller/Thruk::Controller::error - Groots Controller/g" $THRUKLIBCONTROLLERERROR
         sed -i "s/Thruk Controller/Groots Controller/g" $THRUKLIBCONTROLLERERROR
-        sed -i "s/If you believe this is an error.*/'You are not authorized person to view this page.<br> You are not a superuser to view this configuration.',/g"  $THRUKLIBCONTROLLERERROR
+        sed -i "s/If you believe this is an error, check the HTTP server authentication requirements.*/'You are not authorized person to view this page.<br> You are not a superuser to view this configuration.',/g"  $THRUKLIBCONTROLLERERROR
         sed -i '/please specify at least one backend in your.*/ {s/thruk_local.conf/groots_local.conf/g;}' $THRUKLIBCONTROLLERERROR
         sed -i '/please specify at least one backend in your.*/ {s|www.thruk.org/documentation/install.html|www.groots.in|g;}' $THRUKLIBCONTROLLERERROR
         
         diff -i "$THRUKLIBCONTROLLERERROR"_original $THRUKLIBCONTROLLERERROR  | log 
 
 }
-
 
 
 # Function calling
